@@ -21,5 +21,11 @@ jobs:
       - name: Build
         run: make build  # Use the project's Makefile to handle any necessary pre-build steps, such as generating the dist directory
 
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: idm-app
+          path: idm  # Assuming the binary is named 'idm'; adjust if the output binary has a different name or path
+
       - name: Test
         run: go test -v ./...  # Run tests if any exist

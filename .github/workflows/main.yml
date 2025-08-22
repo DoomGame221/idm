@@ -13,13 +13,13 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'  # You can adjust this to the specific Go version used in the project if known
+          go-version: '1.22'  # Adjust to the specific Go version used in the project if known
 
       - name: Install dependencies
         run: go mod tidy
 
       - name: Build
-        run: go build -v ./cmd/idm  # Assuming the main package is in cmd/idm based on repository structure
+        run: make build  # Use the project's Makefile to handle any necessary pre-build steps, such as generating the dist directory
 
       - name: Test
         run: go test -v ./...  # Run tests if any exist

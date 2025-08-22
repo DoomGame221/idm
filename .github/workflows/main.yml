@@ -1,0 +1,25 @@
+name: Build IDM App
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'  # You can adjust this to the specific Go version used in the project if known
+
+      - name: Install dependencies
+        run: go mod tidy
+
+      - name: Build
+        run: go build -v ./cmd/idm  # Assuming the main package is in cmd/idm based on repository structure
+
+      - name: Test
+        run: go test -v ./...  # Run tests if any exist
